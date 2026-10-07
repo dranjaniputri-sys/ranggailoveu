@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Favorite Person ♡</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 15px;
+    overflow-x: hidden;
+    font-family: "Trebuchet MS", sans-serif;
+    background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #dceeff 35%,
+        #9dc9f5 50%,
+        #f8fbff 100%
+    );
+    background-size: 300% 300%;
+    animation: gradientMove 12s ease infinite;
+    color: #fff;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Floating hearts */
+.hearts {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hearts span {
+    position: absolute;
+    bottom: -60px;
+    color: #929eae;
+    opacity: 0;
+    animation: floatUp linear infinite;
+}
+
+.hearts span:nth-child(1) {
+    left: 5%; font-size: 25px; animation-duration: 12s;
+}
+.hearts span:nth-child(2) {
+    left: 18%; font-size: 17px; animation-duration: 9s;
+    animation-delay: 2s;
+}
+.hearts span:nth-child(3) {
+    left: 32%; font-size: 30px; animation-duration: 14s;
+    animation-delay: 4s;
+}
+.hearts span:nth-child(4) {
+    left: 48%; font-size: 20px; animation-duration: 11s;
+    animation-delay: 1s;
+}
+.hearts span:nth-child(5) {
+    left: 65%; font-size: 32px; animation-duration: 13s;
+    animation-delay: 5s;
+}
+.hearts span:nth-child(6) {
+    left: 79%; font-size: 19px; animation-duration: 10s;
+    animation-delay: 3s;
+}
+.hearts span:nth-child(7) {
+    left: 91%; font-size: 27px; animation-duration: 15s;
+    animation-delay: 2s;
+}
+.hearts span:nth-child(8) {
+    left: 57%; font-size: 16px; animation-duration: 12s;
+    animation-delay: 6s;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+    }
+    15% { opacity: 0.65; }
+    85% { opacity: 0.5; }
+    100% {
+        transform: translateY(-120vh) rotate(35deg);
+        opacity: 0;
+    }
+}
+
+/* Glass card */
+.card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 440px;
+    padding: 45px 27px;
+    text-align: center;
+    border-radius: 32px;
+    border: 1px solid rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.32);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow:
+        0 15px 45px rgba(81,128,180,0.15),
+        inset 0 0 25px rgba(255,255,255,0.25);
+    animation: cardIn 1.2s ease;
+}
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.tiny {
+    color: #6d8eb5;
+    letter-spacing: 4px;
+    font-size: 10px;
+    margin-bottom: 24px;
+}
+
+h1 {
+    color: #fff;
+    font-size: clamp(38px, 10vw, 52px);
+    line-height: 1.15;
+    text-shadow: 0 3px 15px #649bd5a0;
+}
+
+.sayang {
+    margin-top: 10px;
+    color: #638fc4;
+    font-size: 27px;
+    font-style: italic;
+}
+
+.heart-icon {
+    display: block;
+    color: #8bb8eb;
+    font-size: 27px;
+    margin: 20px 0;
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    50% { transform: scale(1.25); }
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #6888ac;
+    line-height: 1.8;
+}
+
+button {
+    margin-top: 27px;
+    padding: 14px 22px;
+    border: 1px solid #ffffffc9;
+    border-radius: 50px;
+    background: linear-gradient(120deg, #8dbcf0, #c3dcfa);
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 7px 20px #78a8d955;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px #78a8d977;
+}
+
+#letter {
+    display: none;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid #ffffffb5;
+    color: #536f91;
+    font-size: 14px;
+    line-height: 2;
+    text-align: center;
+}
+
+#letter.show {
+    display: block;
+    animation: letterIn 1s ease;
+}
+
+@keyframes letterIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#letter strong {
+    color: #467db9;
+}
+
+.signature {
+    margin-top: 22px;
+    color: #6c96c6;
+    font-style: italic;
+    font-size: 17px;
+}
+
+.music-note {
+    margin-top: 23px;
+    font-size: 11px;
+    color: #7291b3;
+}
+
+.footer {
+    margin-top: 25px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #7895b4;
+}
+
+@media (max-width: 380px) {
+    .card { padding: 38px 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts">
+    <span>💛</span>
+    <span>♡</span>
+    <span>💛</span>
+    <span>♡</span>
+    <span>💛</span>
+    <span>♡</span>
+    <span>💛</span>
+    <span>♡</span>
+</div>
+
+<main class="card">
+
+    <p class="tiny">A SPECIAL DAY FOR SOMEONE SPECIAL</p>
+
+    <h1>
+        Happy<br>Birthday
+    </h1>
+
+    <div class="sayang">sayangku ♡</div>
+
+    <span class="heart-icon">🍰</span>
+
+    <p class="subtitle">
+        Today is all about you.<br>
+        I have a little something for you...
+    </p>
+
+    <button id="openButton" onclick="openLetter()">
+        💌
+    </button>
+
+    <section id="letter">
+        <p>
+            Happy birthday, sayangku! 
+        </p>
+
+        <br>
+
+        <p>
+            Selamat ulang tahun, yaa, sayang.
+            Hari ini adalah hari spesial karena
+            seseorang sebaik kamu lahir ke dunia.
+            Aku berharap di umur kamu yang baru ini,
+            kamu selalu dikelilingi hal-hal baik,
+            diberi kesehatan, kebahagiaan, dan
+            kelancaran dalam setiap langkah kamu.
+        </p>
+
+        <br>
+
+        <p>
+            Semoga semua mimpi yang selama ini
+            kamu simpan pelan-pelan bisa terwujud.
+            Kalau nanti ada hari yang terasa berat,
+            semoga kamu selalu ingat kalau kamu
+            sudah berusaha sejauh ini dan kamu
+            pantas mendapatkan banyak hal baik.
+        </p>
+
+        <br>
+
+        <p>
+            Terima kasih sudah menjadi diri kamu
+            sendiri. Terima kasih untuk semua
+            hal kecil yang mungkin terlihat sederhana,
+            tetapi punya arti besar buat aku.
+            Aku berharap tahun ini membawa lebih
+            banyak alasan untuk kamu tersenyum.
+        </p>
+
+        <br>
+
+        <p>
+            Sekali lagi, happy birthday, my favorite
+            person. Semoga hari ini menjadi awal
+            dari banyak kenangan indah yang akan
+            kamu ceritakan suatu hari nanti.
+        </p>
+
+        <br>
+
+        <p>
+            <strong>
+                You deserve all the love and
+                happiness in this world. ♡
+            </strong>
+        </p>
+
+        <div class="signature">
+            With love, always. 🩵
+        </div>
+    </section>
+
+    <audio id="birthdayMusic" loop preload="none">
+        <source src="musik.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="music-note" id="musicStatus">
+        ♫ a little song, just for you
+    </div>
+
+    <div class="footer">
+        MADE WITH LOVE ♡
+    </div>
+
+</main>
+
+<script>
+function openLetter() {
+    const letter = document.getElementById("letter");
+    const button = document.getElementById("openButton");
+    const music = document.getElementById("birthdayMusic");
+    const status = document.getElementById("musicStatus");
+
+    letter.classList.add("show");
+    button.textContent = "Our little love story ♡";
+    button.onclick = function () {
+        letter.classList.toggle("show");
+
+        button.textContent = letter.classList.contains("show")
+            ? "Our little love story ♡"
+            : "Open your letter 💌";
+    };
+
+    // Musik mulai setelah pengunjung menekan tombol
+    music.play().then(() => {
+        status.textContent = "♫ playing just for you 🩵";
+    }).catch(() => {
+        status.textContent =
+            "♫ Tambahkan file musik.mp3 untuk memutar lagu";
+    });
+}
+</script>
+
+</body>
+</html>
